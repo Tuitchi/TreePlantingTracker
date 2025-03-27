@@ -22,7 +22,9 @@ function loadPlants() {
         plantList.appendChild(row);
     });
 }
-
+document.getElementById("closeSuccess").addEventListener("click", function() {
+    document.getElementById("successMessage").classList.add("hidden");
+});
 function deletePlant(index) {
     let plants = JSON.parse(localStorage.getItem("plants")) || [];
     plants.splice(index, 1);
@@ -53,18 +55,33 @@ document.getElementById("plantForm").addEventListener("submit", function(event) 
         document.getElementById("successMessage").classList.remove("hidden");
         document.getElementById("plantForm").reset();
         loadPlants();
-        showToast("Tree added successfully!", "bg-green-500");
+        updateAnalytics(); 
     };
 });
 
-document.addEventListener("DOMContentLoaded", loadPlants);
-function showToast(message, bgColor) {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.className = `fixed bottom-5 right-5 p-4 text-white rounded shadow-lg ${bgColor}`;
-    document.body.appendChild(toast);
 
-    setTimeout(() => {
-        toast.remove();
-    }, 3000);
+document.addEventListener("DOMContentLoaded", function() {
+    loadPlants();
+    updateAnalytics();
+});
+function updateAnalytics() {
+    let plants = JSON.parse(localStorage.getItem("plants")) || [];
+    
+    // Total Trees
+    document.getElementById("totalTrees").textContent = plants.length;
+
+    // Calculate Recently Planted Trees (Planted within the last 7 days)
+    let today = new Date();
+    let oneWeekAgo = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7);
+
+    let recentlyPlantedCount = plants.filter(plant => new Date(plant.date) >= oneWeekAgo).length;
+    document.getElementById("recentlyPlanted").textContent = recentlyPlantedCount;
+
+    let healthyCount = Math.floor(plants.length * 0.8);
+    let needingCareCount = plants.length - healthyCount;
+
+    document.getElementById("healthyTrees").textContent = healthyCount;
+    document.getElementById("treesNeedingCare").textContent = needingCareCount;
 }
+
