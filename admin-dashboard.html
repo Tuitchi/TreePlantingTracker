@@ -2,7 +2,7 @@
 <html lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tree Planting Tracker Admin</title>
+    <title>GreenGrow Tracker Admin</title>
     <link rel="icon" href="logo/greengrow.png" type="image/x-icon">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -61,7 +61,7 @@
 
         <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
-            <h1 class="text-2xl font-medium text-green-900 text-center md:text-left">Staff Dashboard</h1>
+            <h1 class="text-2xl font-medium text-green-900 text-center md:text-left">Admin Dashboard</h1>
             <div class="flex flex-col md:flex-row gap-6 mt-6">
                 <form id="plantForm">
                     <div class="bg-white p-6 rounded-xl shadow-lg max-w-lg w-full">
@@ -105,25 +105,25 @@
                     </h2>
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Total Trees Planted -->
-                        <div class="bg-green-100 p-4 rounded-lg text-center shadow-md">
+                        <div class="bg-green-100 p-4 rounded-lg text-center shadow-md transform transition hover:scale-105 hover:shadow-lg hover:bg-green-200">
                             <i class="fas fa-tree text-green-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-bold text-green-900" id="totalTrees">0</p>
                             <p class="text-gray-700 font-medium">Total Trees Planted</p>
                         </div>
                         <!-- Healthy Trees -->
-                        <div class="bg-blue-100 p-4 rounded-lg text-center shadow-md">
+                        <div class="bg-blue-100 p-4 rounded-lg text-center shadow-md transform transition hover:scale-105 hover:shadow-lg hover:bg-blue-200">
                             <i class="fas fa-heart text-blue-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-bold text-blue-900" id="healthyTrees">0</p>
                             <p class="text-gray-700 font-medium">Healthy Trees</p>
                         </div>
                         <!-- Trees Under Observation -->
-                        <div class="bg-red-100 p-4 rounded-lg text-center shadow-md">
+                        <div class="bg-red-100 p-4 rounded-lg text-center shadow-md transform transition hover:scale-105 hover:shadow-lg hover:bg-red-200">
                             <i class="fas fa-eye text-red-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-bold text-red-900" id="treesNeedingCare">0</p>
                             <p class="text-gray-700 font-medium">Trees Under Observation</p>
                         </div>
                         <!-- Recently Planted -->
-                        <div class="bg-yellow-100 p-4 rounded-lg text-center shadow-md">
+                        <div class="bg-yellow-100 p-4 rounded-lg text-center shadow-md transform transition hover:scale-105 hover:shadow-lg hover:bg-yellow-200">
                             <i class="fas fa-seedling text-yellow-600 text-3xl mb-2"></i>
                             <p class="text-2xl font-bold text-yellow-900" id="recentlyPlanted">0</p>
                             <p class="text-gray-700 font-medium">Recently Planted</p>
