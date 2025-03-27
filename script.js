@@ -1,22 +1,3 @@
-
-function filterTable() {
-    let input = document.getElementById("searchInput").value.toLowerCase();
-    let rows = document.getElementById("plantList").getElementsByTagName("tr");
-
-    for (let i = 0; i < rows.length; i++) {
-        let cells = rows[i].getElementsByTagName("td");
-        let match = false;
-
-        for (let j = 0; j < cells.length - 1; j++) { 
-            if (cells[j].innerText.toLowerCase().includes(input)) {
-                match = true;
-                break;
-            }
-        }
-
-        rows[i].style.display = match ? "" : "none";
-    }
-}
 const users = [
     { username: "admin", password: "admin123", role: "admin" },
     { username: "staff1", password: "staff123", role: "staff" }
@@ -52,7 +33,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     
     if (user) {
         localStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = user.role === "admin" ? "/admin-dashboard.html" : "/staff_dashboard.html";
+        window.location.href = user.role === "admin" ? "/admin-dashboard.html" : "/staff-dashboard.html";
     } else {
         errorMessage.classList.remove("hidden");
     }

@@ -44,7 +44,6 @@ function initializeMap() {
         if (marker) map.removeLayer(marker);
         marker = L.marker(event.latlng).addTo(map);
 
-        // Reverse Geocode (Get Location Name)
         fetch(`https://nominatim.openstreetmap.org/reverse?lat=${event.latlng.lat}&lon=${event.latlng.lng}&format=json`)
             .then(response => response.json())
             .then(data => {

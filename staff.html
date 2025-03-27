@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Planting Tracker Admin</title>
+<link rel="icon" href="logo/greengrow.png" type="image/x-icon">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    /* Loader Styling */
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+</style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Loader -->
+    <div id="loader">
+        <img src="logo/loading.gif" alt="Loading..." />
+    </div>
+
+    <div class="flex flex-col md:flex-row h-screen" id="content" style="display: none;">
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-green-900 text-white p-6 md:h-screen shadow-lg flex flex-col">
+            <div class="flex justify-start">
+                <img src="logo/greengrow.png" alt="GreenGrow Logo" class="w-12 h-12 object-contain">
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i
+                                class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
+                    </li>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i
+                                class="fas fa-tree mr-2"></i>Manage
+                            Trees</a></li>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i
+                                class="fa-solid fa-user mr-2"></i>Account Settings</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Logout Button -->
+            <div class="mt-auto pt-6">
+                <a href="#" id="logoutButton"
+                    class="block p-2 bg-red-600 hover:bg-red-700 text-white rounded transition text-center">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+                </a>
+            </div>
+        </aside>
+        <main class="flex-1 p-8 overflow-y-auto">
+            <h1 class="text-2xl font-medium text-green-900 text-center md:text-left">Staff Dashboard</h1>
+            <div class="flex flex-col md:flex-row gap-6 mt-6">
+                <form id="staffForm" class="mb-4">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input type="text" id="staffName" placeholder="Staff Username"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                            required>
+                        <input type="password" id="staffPassword" placeholder="Password"
+                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                            required>
+                        <button type="submit"
+                            class="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition">Add
+                            Staff</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg mt-6 overflow-x-auto">
+                <!-- Title and Search Bar -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold flex items-center gap-2">
+                        <i class="fas fa-male text-green-700"></i> Registered Staff
+                    </h2>
+                </div>
+
+                <!-- Table -->
+                <table class="w-full border-collapse border border-gray-300 text-left text-sm md:text-base">
+                    <thead>
+                        <tr class="bg-green-200">
+                            <th class="border border-green-600 p-2">Username</th>
+                            <th class="border border-green-600 p-2">Role</th>
+                            <th class="border border-green-600 p-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="staffList"></tbody>
+                </table>
+            </div>
+            </table>
+    </div>
+    </main>
+
+
+    <script>
+        // Show the loader for at least 5 seconds
+        window.onload = function () {
+            setTimeout(function () {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("content").style.display = "flex";
+            }, 2500); // 5 seconds delay
+        };
+    </script>
+    <script>
+        function filterTable() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.getElementById("plantList").getElementsByTagName("tr");
+
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+
+                for (let j = 0; j < cells.length - 1; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+    </script>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevents immediate redirection
+            let confirmAction = confirm("Are you sure you want to log out?");
+            if (confirmAction) {
+                window.location.href = "index.html"; // Redirects only if confirmed
+            }
+        });
+    </script>
+
+    <script src="staff.js"></script>
+</body>
+
+</html>
