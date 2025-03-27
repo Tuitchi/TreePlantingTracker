@@ -105,10 +105,22 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Tree List -->
             <div class="bg-white p-6 rounded-xl shadow-lg mt-6 overflow-x-auto">
-                <h2 class="text-2xl font-semibold mb-4">Planted Trees</h2>
+                <!-- Title and Search Bar -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold flex items-center gap-2">
+                        <i class="fas fa-tree text-green-700"></i> Planted Trees
+                    </h2>
+                    <!-- Search Bar with Icon -->
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search trees..." 
+                            class="p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                            onkeyup="filterTable()">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+                    </div>
+                </div>
+            
+                <!-- Table -->
                 <table class="w-full border-collapse border border-gray-300 text-left text-sm md:text-base">
                     <thead>
                         <tr class="bg-green-200">
@@ -119,7 +131,29 @@
                             <th class="border border-green-600 p-2">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="plantList"></tbody>
+                    <tbody id="plantList">
+                        <!-- Example Data -->
+                        <tr>
+                            <td class="border border-gray-300 p-2"><img src="tree1.jpg" alt="Tree" class="h-12 w-12"></td>
+                            <td class="border border-gray-300 p-2">Oak</td>
+                            <td class="border border-gray-300 p-2">Park</td>
+                            <td class="border border-gray-300 p-2">2024-03-25</td>
+                            <td class="border border-gray-300 p-2">
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><img src="tree2.jpg" alt="Tree" class="h-12 w-12"></td>
+                            <td class="border border-gray-300 p-2">Pine</td>
+                            <td class="border border-gray-300 p-2">Forest</td>
+                            <td class="border border-gray-300 p-2">2024-03-20</td>
+                            <td class="border border-gray-300 p-2">
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
                 </table>
             </div>
         </main>
@@ -134,7 +168,26 @@
             }, 2500); // 5 seconds delay
         };
     </script>
+    <script>
+        function filterTable() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.getElementById("plantList").getElementsByTagName("tr");
     
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+    
+                for (let j = 0; j < cells.length - 1; j++) { 
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        match = true;
+                        break;
+                    }
+                }
+    
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+    </script>
 
     <script src="plant.js"></script>
 </body>
