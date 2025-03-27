@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Planting Tracker Admin</title>
+    <link rel="icon" href="logo/greengrow.png" type="image/x-icon">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Loader Styling */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Loader -->
+    <div id="loader">
+        <img src="logo/loading.gif" alt="Loading..." />
+    </div>
+
+    <div class="flex flex-col md:flex-row h-screen" id="content" style="display: none;">
+        <!-- Sidebar -->
+   <!-- Sidebar -->
+   <aside class="w-full md:w-64 bg-green-900 text-white p-6 md:h-screen shadow-lg flex flex-col">
+    <div class="flex justify-start">
+        <img src="logo/greengrow.png" alt="GreenGrow Logo" class="w-12 h-12 object-contain">
+    </div>
+    <nav class="mt-6">
+        <ul>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
+            </li>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fas fa-tree mr-2"></i>Manage
+                    Trees</a></li>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fa-solid fa-user mr-2"></i>Account Settings</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Logout Button -->
+    <div class="mt-auto pt-6">
+        <a href="#" id="logoutButton"
+           class="block p-2 bg-red-600 hover:bg-red-700 text-white rounded transition text-center">
+            <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+        </a>
+    </div>
+</aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <h1 class="text-2xl font-medium text-green-900 text-center md:text-left">Staff Dashboard</h1>
+            <div class="flex flex-col md:flex-row gap-6 mt-6">
+                <form id="plantForm">
+                    <div class="bg-white p-6 rounded-xl shadow-lg max-w-lg w-full">
+                        <h2 class="text-2xl font-semibold mb-4">Add a New Tree</h2>
+                        <label class="block mb-2 font-medium">Tree Species</label>
+                        <input type="text" id="species" placeholder="Enter tree species"
+                            class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                        <label class="block mb-2 font-medium">Location</label>
+                        <input type="text" id="location" placeholder="Enter location"
+                            class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                        <label class="block mb-2 font-medium">Date Planted</label>
+                        <input type="date" id="date"
+                            class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                        <label class="block mb-2 font-medium">Upload Tree Image</label>
+                        <input type="file" id="img"
+                            class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                        <button
+                            class="bg-green-700 text-white px-6 py-3 w-full md:w-auto rounded-lg hover:bg-green-800 transition">Add
+                            Tree</button>
+                    </div>
+                </form>
+
+                <!-- Analytics Section -->
+                <div class="bg-white p-6 rounded-xl shadow-lg flex-1">
+                    <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+                        <i class="fas fa-chart-line text-green-700"></i> Analytics
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Total Trees Planted -->
+                        <div class="bg-green-100 p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-tree text-green-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-bold text-green-900">150</p>
+                            <p class="text-gray-700 font-medium">Total Trees Planted</p>
+                        </div>
+                        <!-- Healthy Trees -->
+                        <div class="bg-blue-100 p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-heart text-blue-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-bold text-blue-900">120</p>
+                            <p class="text-gray-700 font-medium">Healthy Trees</p>
+                        </div>
+                        <!-- Trees Under Observation -->
+                        <div class="bg-red-100 p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-eye text-red-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-bold text-red-900">30</p>
+                            <p class="text-gray-700 font-medium">Trees Under Observation</p>
+                        </div>
+                        <!-- Recently Planted -->
+                        <div class="bg-yellow-100 p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-seedling text-yellow-600 text-3xl mb-2"></i>
+                            <p class="text-2xl font-bold text-yellow-900">10</p>
+                            <p class="text-gray-700 font-medium">Recently Planted</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg mt-6 overflow-x-auto">
+                <!-- Title and Search Bar -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold flex items-center gap-2">
+                        <i class="fas fa-tree text-green-700"></i> Planted Trees
+                    </h2>
+                    <!-- Search Bar with Icon -->
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search trees..." 
+                            class="p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                            onkeyup="filterTable()">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+                    </div>
+                </div>
+            
+                <!-- Table -->
+                <table class="w-full border-collapse border border-gray-300 text-left text-sm md:text-base">
+                    <thead>
+                        <tr class="bg-green-200">
+                            <th class="border border-green-600 p-2">Tree Image</th>
+                            <th class="border border-green-600 p-2">Species</th>
+                            <th class="border border-green-600 p-2">Location</th>
+                            <th class="border border-green-600 p-2">Date</th>
+                            <th class="border border-green-600 p-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="plantList">
+                        <!-- Example Data -->
+                        <tr>
+                            <td class="border border-gray-300 p-2"><img src="tree1.jpg" alt="Tree" class="h-12 w-12"></td>
+                            <td class="border border-gray-300 p-2">Oak</td>
+                            <td class="border border-gray-300 p-2">Park</td>
+                            <td class="border border-gray-300 p-2">2024-03-25</td>
+                            <td class="border border-gray-300 p-2">
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><img src="tree2.jpg" alt="Tree" class="h-12 w-12"></td>
+                            <td class="border border-gray-300 p-2">Pine</td>
+                            <td class="border border-gray-300 p-2">Forest</td>
+                            <td class="border border-gray-300 p-2">2024-03-20</td>
+                            <td class="border border-gray-300 p-2">
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Show the loader for at least 5 seconds
+        window.onload = function () {
+            setTimeout(function () {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("content").style.display = "flex";
+            }, 2500); // 5 seconds delay
+        };
+    </script>
+    <script>
+        function filterTable() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.getElementById("plantList").getElementsByTagName("tr");
+    
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+    
+                for (let j = 0; j < cells.length - 1; j++) { 
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        match = true;
+                        break;
+                    }
+                }
+    
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+    </script>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevents immediate redirection
+            let confirmAction = confirm("Are you sure you want to log out?");
+            if (confirmAction) {
+                window.location.href = "index.html"; // Redirects only if confirmed
+            }
+        });
+    </script>
+
+    <script src="plant.js"></script>
+</body>
+
+</html>
