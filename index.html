@@ -6,7 +6,6 @@
     <title>Green Grow Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="img/greengrow.png" type="image/x-icon">
-    <link 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-green-50 text-green-700">
@@ -15,7 +14,7 @@
             <!-- Left side with image and branding -->
             <div class="w-full md:w-5/12 bg-green-800 flex flex-col justify-center items-center p-8 relative">
                 <div class="mb-8">
-                    <img src="img/greengrow.png" alt="GreenGrow Logo" class="w-24 h-24 object-contain">
+                    <img src="logo/greengrow.png" alt="GreenGrow Logo" class="w-24 h-24 object-contain">
                 </div>
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Green Grow Tracker</h2>
                 <p class="text-green-100 text-lg mb-6 text-center max-w-md">The new way to monitor and protect our planet's trees with smart tracking technology</p>
@@ -47,14 +46,16 @@
                     <form id="loginForm">
                         <div class="mb-4">
                             <label for="username" class="block text-gray-700 text-sm font-medium mb-2">Username</label>
-                            <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="Enter your username" required>
+                            <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="Enter your username">
+                            <p id="usernameError" class="text-red-500 text-sm hidden">Username is required</p>
                         </div>
                         <div class="mb-4">
                             <div class="flex justify-between items-center mb-2">
                                 <label for="password" class="block text-gray-700 text-sm font-medium">Password</label>
                                 <a href="#" class="text-sm text-green-600 hover:text-green-800">Forgot?</a>
                             </div>
-                            <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="••••••••" required>
+                            <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="••••••••">
+                            <p id="passwordError" class="text-red-500 text-sm hidden">Password is required</p>
                         </div>
                         <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-300 mt-2">Log In</button>
                     </form>
