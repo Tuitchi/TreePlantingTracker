@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         /* Loader Styling */
         #loader {
@@ -71,9 +73,13 @@
                         <input type="text" id="species" placeholder="Enter tree species"
                             class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
 
-                        <label class="block mb-2 font-medium">Location</label>
-                        <input type="text" id="location" placeholder="Enter location"
-                            class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+                            <label class="block mb-2 font-medium">Location</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="location" placeholder="Select a location" readonly
+                                    class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
+                                <button type="button" id="openMapBtn"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">📍</button>
+                            </div>
 
                         <label class="block mb-2 font-medium">Date Planted</label>
                         <input type="date" id="date"
@@ -155,7 +161,16 @@
             </div>
         </main>
     </div>
-
+    <div id="mapModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-4 rounded-lg shadow-lg w-[90%] max-w-2xl">
+            <h2 class="text-xl font-bold mb-2">Select Location</h2>
+            <div id="map" class="w-full h-64"></div>
+            <button id="confirmLocation"
+                class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Confirm</button>
+            <button id="closeMapBtn"
+                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Close</button>
+        </div>
+    </div>
     <script src="script.js">
         
     </script>

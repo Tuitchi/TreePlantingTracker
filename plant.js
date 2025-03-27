@@ -22,6 +22,46 @@ function loadPlants() {
         plantList.appendChild(row);
     });
 }
+document.getElementById("openMapBtn").addEventListener("click", function() {
+    document.getElementById("mapModal").classList.remove("hidden");
+    initializeMap();
+});
+
+document.getElementById("closeMapBtn").addEventListener("click", function() {
+    document.getElementById("mapModal").classList.add("hidden");
+});
+
+let selectedLocation = { lat: null, lng: null, name: "" };
+function initializeMap() {
+    let map = L.map("map").setView([10.3157, 123.8854], 10); // Default to Cebu
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    let marker;
+    map.on("click", function(event) {
+        if (marker) map.removeLayer(marker);
+        marker = L.marker(event.latlng).addTo(map);
+
+        // Reverse Geocode (Get Location Name)
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${event.latlng.lat}&lon=${event.latlng.lng}&format=json`)
+            .then(response => response.json())
+            .then(data => {
+                selectedLocation = {
+                    lat: event.latlng.lat,
+                    lng: event.latlng.lng,
+                    name: data.display_name || "Unknown Location"
+                };
+                document.getElementById("location").value = selectedLocation.name;
+            });
+    });
+
+    document.getElementById("confirmLocation").addEventListener("click", function() {
+        document.getElementById("mapModal").classList.add("hidden");
+    });
+}
+
 document.getElementById("closeSuccess").addEventListener("click", function() {
     document.getElementById("successMessage").classList.add("hidden");
 });
