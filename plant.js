@@ -33,7 +33,7 @@ document.getElementById("closeMapBtn").addEventListener("click", function() {
 
 let selectedLocation = { lat: null, lng: null, name: "" };
 function initializeMap() {
-    let map = L.map("map").setView([10.3157, 123.8854], 10); // Default to Cebu
+    let map = L.map("map").setView([10.503405, 122.966301], 10);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors"
