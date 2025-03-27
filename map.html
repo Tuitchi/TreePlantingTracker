@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Planting Tracker - Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body class="flex flex-col items-center justify-center h-screen bg-green-100">
+    <h2 class="text-2xl font-bold text-green-600 mb-4">Tree Planting Location Tracker</h2>
+    <div id="map" class="w-3/4 h-96 border border-green-600 rounded-lg"></div>
+    <button id="clearMarkers" class="mt-4 p-2 bg-red-600 text-white rounded-md hover:bg-red-700">Clear Markers</button>
+
+    <script>
+        const map = L.map('map').setView([10.503405, 122.966301], 12); // Default center
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let markers = JSON.parse(localStorage.getItem("treeMarkers")) || [];
+
+        function addMarker(lat, lng) {
+            const marker = L.marker([lat, lng]).addTo(map);
+            markers.push({ lat, lng });
+            localStorage.setItem("treeMarkers", JSON.stringify(markers));
+        }
+
+        map.on('click', function(e) {
+            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+            if (user && user.role === "staff") {
+                addMarker(e.latlng.lat, e.latlng.lng);
+            } else {
+                alert("Only staff can add locations!");
+            }
+        });
+
+        markers.forEach(m => L.marker([m.lat, m.lng]).addTo(map));
+
+        document.getElementById("clearMarkers").addEventListener("click", function() {
+            localStorage.removeItem("treeMarkers");
+            location.reload();
+        });
+    </script>
+</body>
+</html>
