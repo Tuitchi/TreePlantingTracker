@@ -6,21 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Planting Tracker Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Loader Styling */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
-    <div class="flex flex-col md:flex-row h-screen">
+    <!-- Loader -->
+    <div id="loader">
+        <img src="logo/loading.gif" alt="Loading..." />
+    </div>
+
+    <div class="flex flex-col md:flex-row h-screen" id="content" style="display: none;">
         <!-- Sidebar -->
         <aside class="w-full md:w-64 bg-green-900 text-white p-6 md:h-screen shadow-lg">
             <h2 class="text-2xl font-bold text-center md:text-left">Admin Dashboard</h2>
             <nav class="mt-6">
                 <ul>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Dashboard</a>
-                    </li>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Manage
-                            Trees</a></li>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Settings</a>
-                    </li>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Dashboard</a></li>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Manage Trees</a></li>
+                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Settings</a></li>
                 </ul>
             </nav>
         </aside>
@@ -83,7 +100,6 @@
             <div class="bg-white p-6 rounded-xl shadow-lg mt-6 overflow-x-auto">
                 <h2 class="text-2xl font-semibold mb-4">Planted Trees</h2>
                 <table class="w-full border-collapse border border-gray-300 text-left text-sm md:text-base">
-
                     <thead>
                         <tr class="bg-green-200">
                             <th class="border border-green-600 p-2">Tree Image</th>
@@ -98,6 +114,18 @@
             </div>
         </main>
     </div>
+
+    <script>
+        // Show the loader for at least 5 seconds
+        window.onload = function () {
+            setTimeout(function () {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("content").style.display = "flex";
+            }, 2500); // 5 seconds delay
+        };
+    </script>
+    
+
     <script src="plant.js"></script>
 </body>
 
