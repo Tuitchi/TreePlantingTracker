@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Planting Tracker Admin</title>
+    <link rel="icon" href="logo/greengrow.png" type="image/x-icon">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,21 +32,33 @@
 
     <div class="flex flex-col md:flex-row h-screen" id="content" style="display: none;">
         <!-- Sidebar -->
-        <aside class="w-full md:w-64 bg-green-900 text-white p-6 md:h-screen shadow-lg">
-            <h2 class="text-2xl font-bold text-center md:text-left">Admin Dashboard</h2>
-            <nav class="mt-6">
-                <ul>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Dashboard</a></li>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Manage Trees</a></li>
-                    <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition">Settings</a></li>
-                </ul>
-            </nav>
-        </aside>
+   <!-- Sidebar -->
+   <aside class="w-full md:w-64 bg-green-900 text-white p-6 md:h-screen shadow-lg flex flex-col">
+    <div class="flex justify-start">
+        <img src="logo/greengrow.png" alt="GreenGrow Logo" class="w-12 h-12 object-contain">
+    </div>
+    <nav class="mt-6">
+        <ul>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
+            </li>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fas fa-tree mr-2"></i>Manage
+                    Trees</a></li>
+            <li class="mb-3"><a href="#" class="block p-3 hover:bg-green-800 rounded transition"><i class="fa-solid fa-user mr-2"></i>Account Settings</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Logout Button -->
+    <div class="mt-auto pt-6">
+        <a href="index.html" class="block p-2 bg-red-600 hover:bg-red-700 text-white rounded transition text-center">
+            <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+        </a>
+    </div>
+</aside>
 
         <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
-            <h1 class="text-4xl font-extrabold text-green-900 text-center md:text-left">Tree Planting Tracker</h1>
-
+            <h1 class="text-2xl font-medium text-green-900 text-center md:text-left">Admin Dashboard</h1>
             <div class="flex flex-col md:flex-row gap-6 mt-6">
                 <form id="plantForm">
                     <div class="bg-white p-6 rounded-xl shadow-lg max-w-lg w-full">
