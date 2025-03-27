@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Grow Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-green-50 text-green-700">
+    <header class="bg-white py-0">
+        <div class="flex flex-col md:flex-row min-h-screen">
+            <!-- Left side with image and branding -->
+            <div class="w-full md:w-5/12 bg-green-800 flex flex-col justify-center items-center p-8 relative">
+                <div class="mb-8">
+                    <img src="img/greengrow.png" alt="GreenGrow Logo" class="w-24 h-24 object-contain">
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Green Grow Tracker</h2>
+                <p class="text-green-100 text-lg mb-6 text-center max-w-md">The new way to monitor and protect our planet's trees with smart tracking technology</p>
+                <!-- Decorative elements -->
+                <div class="absolute bottom-4 left-4 opacity-30">
+                    <svg class="w-24 h-24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3L4 16H20L12 3Z" fill="white"/>
+                        <rect x="11" y="16" width="2" height="5" fill="white"/>
+                    </svg>
+                </div>
+                <div class="absolute top-4 right-4 opacity-20">
+                    <svg class="w-16 h-16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3L4 16H20L12 3Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Right side with login form -->
+            <div class="w-full md:w-7/12 flex justify-center items-center p-8">
+                <div class="max-w-md w-full">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-8">Green Grow Tracker</h1>
+                    
+                    <div class="flex items-center mb-6">
+                        <div class="flex-grow border-t border-gray-300"></div>
+                        <span class="mx-4 text-sm text-gray-500">Sign in with username & password</span>
+                        <div class="flex-grow border-t border-gray-300"></div>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label for="username" class="block text-gray-700 text-sm font-medium mb-2">Username</label>
+                            <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="Enter your username" required>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="password" class="block text-gray-700 text-sm font-medium">Password</label>
+                                <a href="#" class="text-sm text-green-600 hover:text-green-800">Forgot?</a>
+                            </div>
+                            <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-300 mt-2">Log In</button>
+                    </form>
+                    <div class="mt-6 text-center text-sm text-gray-600">
+                        Don't have an account? <a href="#" class="text-green-600 hover:text-green-800 font-medium">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <footer class="bg-green-700 text-white py-4 text-center">
+        <p>&copy; 2025 Tree Tracker. All rights reserved.</p>
+    </footer>
+    
+    <script>
+    </script>
+</body>
+</html>
