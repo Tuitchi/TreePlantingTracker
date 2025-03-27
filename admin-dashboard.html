@@ -74,13 +74,16 @@
                         <input type="text" id="species" placeholder="Enter tree species"
                             class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
 
-                            <label class="block mb-2 font-medium">Location</label>
-                            <div class="flex gap-2">
+                            <label class="block mb-2 font-medium text-gray-700">Location</label>
+                            <div class="flex items-center gap-2">
                                 <input type="text" id="location" placeholder="Select a location" readonly
-                                    class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-700">
-                                <button type="button" id="openMapBtn"
-                                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">📍</button>
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 bg-gray-100 cursor-not-allowed">
+                                <button type="button" id="openMapBtn" title="Open Map"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center shadow-md">
+                                    <i class="fas fa-map-marker-alt text-lg"></i>
+                                </button>
                             </div>
+                            
 
                         <label class="block mb-2 font-medium">Date Planted</label>
                         <input type="date" id="date"
