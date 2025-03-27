@@ -33,7 +33,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     
     if (user) {
         localStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = user.role === "admin" ? "admin_dashboard.html" : "staff_dashboard.html";
+        window.location.href = user.role === "admin" ? "/admin-dashboard.html" : "/staff-dashboard.html";
     } else {
         errorMessage.classList.remove("hidden");
     }
