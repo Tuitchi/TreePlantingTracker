@@ -1,3 +1,4 @@
+// Predefined users (if no users exist in localStorage)
 const users = [
     { username: "admin", password: "admin123", role: "admin" },
     { username: "staff1", password: "staff123", role: "staff" }
@@ -39,3 +40,33 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     }
 });
 // Show the loader for at least 5 seconds
+
+
+// Logout function
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html"; // Redirect to login
+}
+
+// Function to filter plant list (for staff dashboard)
+function filterTable() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let rows = document.getElementById("plantList").getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td");
+        let match = false;
+
+        for (let j = 0; j < cells.length - 1; j++) { 
+            if (cells[j].innerText.toLowerCase().includes(input)) {
+                match = true;
+                break;
+            }
+        }
+
+        rows[i].style.display = match ? "" : "none";
+    }
+}
+
+// Check if user is logged in and redirect accordingly
+
